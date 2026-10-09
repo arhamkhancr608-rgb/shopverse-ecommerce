@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ShopVerse — discover everyday essentials and modern style.">
+  <title>ShopVerse | Discover Your Style</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #17211d;
+      --green: #174c3b;
+      --lime: #d5f36a;
+      --paper: #f7f7f2;
+      --muted: #727a74;
+    }
+    body { font-family: Arial, sans-serif; background: var(--paper); color: var(--ink); }
+    a { color: inherit; text-decoration: none; }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 7%; background: white; border-bottom: 1px solid #e9eae4;
+    }
+    .logo { font-size: 25px; font-weight: 800; letter-spacing: -1px; }
+    .logo span { color: #528267; }
+    nav { display: flex; gap: 26px; font-size: 14px; }
+    .cart { border: 1px solid #dce0d8; padding: 10px 15px; border-radius: 25px; }
+    .hero {
+      margin: 28px auto; width: 90%; min-height: 370px; border-radius: 22px;
+      background: var(--green); color: white; display: flex; align-items: center;
+      justify-content: space-between; padding: 55px 7%; overflow: hidden; gap: 24px;
+    }
+    .eyebrow { color: var(--lime); font-size: 12px; letter-spacing: 3px; font-weight: bold; }
+    h1 { font-size: clamp(40px, 6vw, 68px); line-height: 1.05; margin: 20px 0; letter-spacing: -2px; }
+    .hero p { color: #d3e0d7; line-height: 1.7; max-width: 420px; }
+    .cta {
+      display: inline-block; background: var(--lime); color: var(--ink);
+      padding: 14px 22px; border-radius: 30px; font-weight: bold; margin-top: 24px;
+    }
+    .hero-art { font-size: clamp(100px, 18vw, 190px); transform: rotate(-12deg); }
+    .section { width: 86%; margin: 55px auto; }
+    .section-top { display: flex; justify-content: space-between; align-items: end; gap: 15px; margin-bottom: 24px; }
+    h2 { font-size: 30px; letter-spacing: -1px; }
+    .section-top p { color: var(--muted); font-size: 14px; margin-top: 8px; }
+    .tools { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    input, select {
+      padding: 12px 15px; border: 1px solid #dfe2d9; border-radius: 10px;
+      background: white; font-size: 14px;
+    }
+    input { flex: 1; min-width: 180px; }
+    .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .product { background: white; padding: 12px; border-radius: 16px; }
+    .product-art {
+      min-height: 180px; display: grid; place-items: center;
+      background: #eef0e7; border-radius: 12px; font-size: 78px;
+    }
+    .product h3 { font-size: 16px; margin: 15px 0 7px; }
+    .product p { color: var(--muted); font-size: 13px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 15px; }
+    .price { font-weight: bold; }
+    .add {
+      border: 0; background: var(--green); color: white; padding: 10px 12px;
+      border-radius: 9px; cursor: pointer; font-weight: bold;
+    }
+    .add:hover { background: #28664f; }
+    .empty { grid-column: 1 / -1; padding: 35px; text-align: center; color: var(--muted); }
+    footer { margin-top: 70px; background: #17211d; color: white; padding: 35px 7%; display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    footer p { color: #c1c9c2; font-size: 13px; }
+    @media (max-width: 800px) {
+      .products { grid-template-columns: repeat(2, 1fr); }
+      .hero-art { font-size: 100px; }
+      nav { gap: 12px; }
+    }
+    @media (max-width: 520px) {
+      header { padding: 18px 5%; flex-wrap: wrap; gap: 15px; }
+      nav { order: 3; width: 100%; justify-content: space-between; }
+      .hero { padding: 35px 25px; min-height: 300px; }
+      .hero-art { display: none; }
+      .section { width: 90%; }
+      .products { gap: 10px; }
+      .product-art { min-height: 130px; font-size: 55px; }
+      .product { padding: 8px; }
+      .price-row { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="#">shop<span>verse.</span></a>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#products">Shop</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="cart" href="#products">Bag (<span id="cart-count">0</span>)</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">YOUR EVERYDAY, UPGRADED</div>
+        <h1>Find your<br>next favorite.</h1>
+        <p>Thoughtfully picked essentials for your everyday life. Discover something you'll love.</p>
+        <a class="cta" href="#products">Explore collection →</a>
+      </div>
+      <div class="hero-art" aria-hidden="true">🛍️</div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="section-top">
+        <div>
+          <h2>Featured collection</h2>
+          <p>Good finds. Everyday prices.</p>
+        </div>
+      </div>
+      <div class="tools">
+        <input id="search" type="search" placeholder="Search products..." aria-label="Search products">
+        <select id="category" aria-label="Filter by category">
+          <option value="All">All categories</option>
+          <option value="Accessories">Accessories</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="Tech">Tech</option>
+        </select>
+      </div>
+      <div class="products" id="product-grid"></div>
+    </section>
+
+    <section class="section" id="about">
+      <h2>Shopping, made simple.</h2>
+      <p style="color:var(--muted);line-height:1.8;margin-top:12px">
+        ShopVerse is a portfolio e-commerce demo built to explore responsive web design,
+        product filtering, and interactive shopping cart behavior.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#">shop<span>verse.</span></a>
+    <p>Portfolio project · Built with HTML, CSS & JavaScript</p>
+  </footer>
+
+  <script>
+    const products = [
+      { id: 1, name: "Everyday Backpack", category: "Lifestyle", price: 1499, emoji: "🎒", description: "Room for every adventure" },
+      { id: 2, name: "Classic Watch", category: "Accessories", price: 2199, emoji: "⌚", description: "Timeless, everyday style" },
+      { id: 3, name: "Wireless Headphones", category: "Tech", price: 2799, emoji: "🎧", description: "Your music, your world" },
+      { id: 4, name: "Minimal Sneakers", category: "Lifestyle", price: 1899, emoji: "👟", description: "Comfort meets clean design" },
+      { id: 5, name: "Everyday Sunglasses", category: "Accessories", price: 899, emoji: "🕶️", description: "A little shade, a lot of style" },
+      { id: 6, name: "Smart Speaker", category: "Tech", price: 2499, emoji: "🔊", description: "Bring your space to life" },
+      { id: 7, name: "Travel Bottle", category: "Lifestyle", price: 599, emoji: "🧴", description: "Hydration on the go" },
+      { id: 8, name: "Canvas Tote", category: "Accessories", price: 499, emoji: "👜", description: "Carry your day in style" }
+    ];
+
+    const cart = {};
+    const money = amount => new Intl.NumberFormat("en-IN", {
+      style: "currency", currency: "INR", maximumFractionDigits: 0
+    }).format(amount);
+
+    function renderProducts() {
+      const query = document.getElementById("search").value.trim().toLowerCase();
+      const category = document.getElementById("category").value;
+      const filtered = products.filter(product =>
+        (product.name.toLowerCase().includes(query) ||
+         product.description.toLowerCase().includes(query)) &&
+        (category === "All" || product.category === category)
+      );
+
+      const grid = document.getElementById("product-grid");
+      if (!filtered.length) {
+        grid.innerHTML = '<p class="empty">No products found. Try another search.</p>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(product => `
+        <article class="product">
+          <div class="product-art" aria-hidden="true">${product.emoji}</div>
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <div class="price-row">
+            <span class="price">${money(product.price)}</span>
+            <button class="add" data-id="${product.id}">Add to bag</button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    document.getElementById("search").addEventListener("input", renderProducts);
+    document.getElementById("category").addEventListener("change", renderProducts);
+
+    document.getElementById("product-grid").addEventListener("click", event => {
+      const button = event.target.closest("button[data-id]");
+      if (!button) return;
+      const id = Number(button.dataset.id);
+      cart[id] = (cart[id] || 0) + 1;
+      document.getElementById("cart-count").textContent =
+        Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
+      button.textContent = "Added ✓";
+      setTimeout(() => { button.textContent = "Add to bag"; }, 800);
+    });
+
+    renderProducts();
+  </script>
+</body>
+</html>
